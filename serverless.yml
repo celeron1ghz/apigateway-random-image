@@ -8,6 +8,12 @@ provider:
   deploymentBucket: serverless-upload-ap-northeast-1
   versionFunctions: false
 
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - "s3:List*"
+      Resource: "arn:aws:s3:::lambda-random-image"
+
 functions:
   main:
     handler: handler.main
@@ -31,6 +37,7 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: lambda-random-image
+        AccessControl : PublicRead
         WebsiteConfiguration:
           ErrorDocument: index.html
           IndexDocument: index.html
