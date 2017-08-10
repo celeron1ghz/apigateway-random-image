@@ -40,6 +40,27 @@ resources:
         WebsiteConfiguration:
           ErrorDocument: index.html
           IndexDocument: index.html
+    Cloudfront:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          DefaultCacheBehavior:
+            TargetOriginId: LambdaRandomImage
+            ViewerProtocolPolicy: allow-all
+            ForwardedValues:
+              QueryString: true
+          Enabled: true
+          Origins:
+            - Id: LambdaRandomImage
+              DomainName:
+                Fn::Join:
+                  - ""
+                  - [ { Ref: "ApiGatewayRestApi" }, ".execute-api.ap-northeast-1.amazonaws.com" ]
+              CustomOriginConfig:
+                OriginProtocolPolicy: http-only
+              OriginCustomHeaders:
+                - HeaderName: Accept
+                  HeaderValue: image/jpeg
 
   Outputs:
      S3Bucket:
