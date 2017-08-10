@@ -49,6 +49,9 @@ resources:
             ViewerProtocolPolicy: allow-all
             ForwardedValues:
               QueryString: true
+            MinTTL: 0
+            MaxTTL: 600
+            DefaultTTL: 600
           Enabled: true
           Origins:
             - Id: LambdaRandomImage
