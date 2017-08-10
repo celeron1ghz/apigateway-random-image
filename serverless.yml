@@ -21,14 +21,13 @@ functions:
       - http:
           method: get
           path: image
-          integration: lambda
+          integration: lambda_proxy
           response:
             headers:
-              Content-Type: "'text/html'"
-              Location: integration.response.body.location
+              Content-Type: "'image/jpeg'"
             template: $input.path('$')
             statusCodes:
-              302:
+              200:
                 pattern: ''
 
 resources:
