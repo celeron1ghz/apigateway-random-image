@@ -24,6 +24,7 @@ custom:
 functions:
   main:
     handler: handler.main
+    description: Return image file randomly on specified bucket
     events:
       - http:
           method: get
