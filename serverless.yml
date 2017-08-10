@@ -14,6 +14,13 @@ provider:
         - "s3:List*"
       Resource: "arn:aws:s3:::lambda-random-image"
 
+plugins:
+ - serverless-apigw-binary
+
+custom:
+  apigwBinary:
+    types: ['image/jpeg']
+
 functions:
   main:
     handler: handler.main
@@ -22,13 +29,6 @@ functions:
           method: get
           path: image
           integration: lambda_proxy
-          response:
-            headers:
-              Content-Type: "'image/jpeg'"
-            template: $input.path('$')
-            statusCodes:
-              200:
-                pattern: ''
 
 resources:
   Resources:

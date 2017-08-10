@@ -1,0 +1,7 @@
+{
+  "name": "lambda-random-image",
+  "dependencies": {
+    "aws-sdk": "^2.95.0",
+    "serverless-apigw-binary": "^0.3.5"
+  }
+}
