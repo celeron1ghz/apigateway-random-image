@@ -51,8 +51,8 @@ resources:
             ForwardedValues:
               QueryString: true
             MinTTL: 0
-            MaxTTL: 600
-            DefaultTTL: 600
+            MaxTTL: 60
+            DefaultTTL: 60
           Enabled: true
           Origins:
             - Id: LambdaRandomImage
