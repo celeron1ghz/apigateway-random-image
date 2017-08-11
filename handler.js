@@ -14,7 +14,7 @@ module.exports.main = (event, context, callback) => {
   .then(data => {
     callback(null, {
         statusCode: 200,
-        headers: { 'Content-Type': 'image/jpeg' },
+        headers: { 'Content-Type': 'image/jpeg', 'Cache-Control': 'no-cache' },
         body: data.Body.toString('base64'),
         isBase64Encoded: true,
     });
