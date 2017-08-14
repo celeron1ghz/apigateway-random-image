@@ -2,7 +2,7 @@
 
 const aws    = require('aws-sdk');
 const s3     = new aws.S3({ region: 'ap-northeast-1' });
-const BUCKET = 'lambda-random-image';
+const BUCKET = 'apigateway-random-image';
 
 module.exports.main = (event, context, callback) => {
   s3.listObjects({ Bucket: BUCKET }).promise().then(data => {

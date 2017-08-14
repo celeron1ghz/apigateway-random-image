@@ -1,4 +1,4 @@
-service: random-image
+service: apigateway-random-image
 
 provider:
   name: aws
@@ -12,7 +12,17 @@ provider:
     - Effect: Allow
       Action:
         - "s3:List*"
-      Resource: "arn:aws:s3:::lambda-random-image"
+      Resource:
+        Fn::Join:
+          - ""
+          - [ "arn:aws:s3:::", { Ref: S3Bucket } ]
+    - Effect: Allow
+      Action:
+        - "s3:GetObject"
+      Resource:
+        Fn::Join:
+          - ""
+          - [ "arn:aws:s3:::", { Ref: S3Bucket }, "/*" ]
 
 plugins:
  - serverless-apigw-binary
@@ -36,11 +46,8 @@ resources:
     S3Bucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: lambda-random-image
-        AccessControl : PublicRead
-        WebsiteConfiguration:
-          ErrorDocument: index.html
-          IndexDocument: index.html
+        BucketName: apigateway-random-image
+
     Cloudfront:
       Type: AWS::CloudFront::Distribution
       Properties:
@@ -71,3 +78,6 @@ resources:
      S3Bucket:
        Description: "Randomly select image from this bucket"
        Value: { Ref: S3Bucket }
+     CloudfrontUrl:
+       Description: "Randomly select image from this bucket"
+       Value: { Fn::GetAtt: [Cloudfront, DomainName] }
