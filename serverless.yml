@@ -42,6 +42,7 @@ functions:
           integration: lambda_proxy
 
 resources:
+  Description: Return image file randomly on specified bucket
   Resources:
     S3Bucket:
       Type: AWS::S3::Bucket
