@@ -1,9 +1,9 @@
 # apigateway-random-image
-指定したS3の倍ケット内にある画像ファイルをrandomに返す。
-単一のURLでしか指定できないところでrandomに画像を返したいために使うもの。
-IFTTTなどの`Image URL`でrandomに画像を変えたい場合などに使用するのを想定。
+This scripts creates s3 bucket named `apigateway-random-image`.
 
-アップロードする部分は作ってないのでManagement Consoleとかからアップロードしてください。
+Created API Gateway return image randomly on this bucket.
+
+Uploading action for UI is not exist, so upload by you hand :-)
 
 
 ## SETUP ENVIRONMENT VARIABLES
