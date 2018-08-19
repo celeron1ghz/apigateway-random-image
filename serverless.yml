@@ -44,6 +44,10 @@ functions:
 resources:
   Description: Return image file randomly on specified bucket
   Resources:
+    IamRoleLambdaExecution:
+      Properties:
+        RoleName: "${self:service}"
+
     S3Bucket:
       Type: AWS::S3::Bucket
       Properties:
